@@ -8,13 +8,24 @@ namespace UserCollections
 {
     abstract internal class Citizen
     {
-        public string Passport { get; }
+        private string _passport;
+        public string Passport
+        {
+            get => _passport;
+            set
+            {
+                if (string.IsNullOrEmpty(value))
+                    throw new ArgumentException("Паспорт не может быть пустым");
+                _passport = value;
+            }
+        }
 
         protected Citizen(string passport)
         {
-            if(string.IsNullOrEmpty(passport))
+            if (string.IsNullOrEmpty(passport))
                 throw new ArgumentNullException("Паспорт не может быть пустым");
-            Passport = passport;
+
+            _passport = passport;
         }
 
         public override bool Equals(object? obj)
