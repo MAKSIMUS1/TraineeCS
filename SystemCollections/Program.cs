@@ -1,4 +1,5 @@
-﻿using System.Security.Principal;
+﻿using System;
+using System.Security.Principal;
 using System.Text;
 
 namespace SystemCollections
@@ -37,8 +38,44 @@ namespace SystemCollections
             }
 
             // Task 2
+            var dict = new OrderedDictionary<string, Company>();
+            dict.Add("Coca-cola", new Company(111, 1000));
+            dict.Add("AUDI", new Company(222, 1400));
+            dict.Add("VALVE", new Company(333, 2500));
+
+            foreach (var d in dict)
+            {
+                var key = d.Key;
+                var value = d.Value;
+                var comparison = String.Compare(key, "Coca-cola");
+                if (comparison == 0)
+                    Console.WriteLine($"Компания {key} есть");
+                else if (comparison < 0)
+                    Console.WriteLine($"{key} меншье Coca-cola");
+                else
+                    Console.WriteLine($"{key} больше Coca-cola");
+
+            }
+
 
             // Task extra
+            var sortedList = new SortedList<string, int>();
+            sortedList.Add("Banan", 3);
+            sortedList.Add("Watermelon", 1);
+            sortedList.Add("Apple", 9);
+            sortedList.Add("Cherry", 5);
+            sortedList.Add("Pear", 8);
+
+            foreach(var f in sortedList)
+            {
+                Console.WriteLine($"{f.Key} - {f.Value}");
+            }
+
+            for(int i = sortedList.Count - 1; i >= 0; i--)
+            {
+                Console.WriteLine($"{sortedList.GetKeyAtIndex(i)} - {sortedList.GetValueAtIndex(i)}");
+            }
+
         }
     }
 }
