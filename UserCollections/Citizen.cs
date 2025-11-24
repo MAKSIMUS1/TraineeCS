@@ -22,10 +22,7 @@ namespace UserCollections
 
         protected Citizen(string passport)
         {
-            if (string.IsNullOrEmpty(passport))
-                throw new ArgumentNullException("Паспорт не может быть пустым");
-
-            _passport = passport;
+            Passport = passport;
         }
 
         public override bool Equals(object? obj)
