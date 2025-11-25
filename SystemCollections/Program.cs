@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Security.Principal;
 using System.Text;
 
@@ -38,24 +39,15 @@ namespace SystemCollections
             }
 
             // Task 2
-            var dict = new OrderedDictionary<string, Company>();
-            dict.Add("Coca-cola", new Company(111, 1000));
-            dict.Add("AUDI", new Company(222, 1400));
-            dict.Add("VALVE", new Company(333, 2500));
+            var dict = new OrderedDictionaryWrap<string, int>();
+            dict.Add("one", 1);
+            dict.Add("two", 2);
 
-            foreach (var d in dict)
+            foreach (var kvp in dict)
             {
-                var key = d.Key;
-                var value = d.Value;
-                var comparison = String.Compare(key, "Coca-cola");
-                if (comparison == 0)
-                    Console.WriteLine($"Компания {key} есть");
-                else if (comparison < 0)
-                    Console.WriteLine($"{key} меншье Coca-cola");
-                else
-                    Console.WriteLine($"{key} больше Coca-cola");
-
+                Console.WriteLine($"{kvp.Key}: {kvp.Value}");
             }
+
 
 
             // Task extra
