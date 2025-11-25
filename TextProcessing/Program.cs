@@ -19,27 +19,11 @@ namespace TextProcessing
 
             var lines = File.ReadAllLines(productsPath);
 
-            Console.WriteLine("Локаль пользователя");
-            CultureInfo userCultureInfo = CultureInfo.CurrentCulture;
-            foreach(var line in lines)
-            {
-                string[] parts = line.Split(' ');
-                string product = parts[0];
-                DateTime date = DateTime.Parse(parts[1], userCultureInfo);
-                string format = string.Format(userCultureInfo, "{0}: {1:D}", product, date);
-                Console.WriteLine(format);
-            }
+            Console.WriteLine("Локаль пользователя:");
+            CheckPrinter.ProcessLines(lines, CultureInfo.CurrentCulture);
 
-            Console.WriteLine("Локаль en-US");
-            CultureInfo enUS = new CultureInfo("en-US");
-            foreach (var line in lines)
-            {
-                string[] parts = line.Split(' ');
-                string product = parts[0];
-                DateTime date = DateTime.ParseExact(parts[1], "dd.MM.yyyy", CultureInfo.InvariantCulture);
-                string format = string.Format(enUS, "{0}: {1:D}", product, date);
-                Console.WriteLine(format);
-            }
+            Console.WriteLine("\nЛокаль en-US:");
+            CheckPrinter.ProcessLines(lines, new CultureInfo("en-US"));
         }
     }
 }
