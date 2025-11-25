@@ -3,19 +3,9 @@ using System.Text;
 
 namespace UserCollections
 {
-    class Program
+    public class Program
     {
-        static IEnumerable<int> GetSquaresOdd(IEnumerable<int> numbers)
-        {
-            foreach (int n in numbers)
-            {
-                if (n % 2 != 0)
-                {
-                    yield return n * n;
-                }
-            }
-        }
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             Console.OutputEncoding = Encoding.UTF8;
             CitizenCollection citizens = new CitizenCollection();
@@ -78,7 +68,7 @@ namespace UserCollections
             }
 
             // - - -
-            Console.WriteLine(string.Join(" ", GetSquaresOdd(new int[] { 1, 2, 3, 4, 5, 6, 7 })));
+            Console.WriteLine(string.Join(" ", Helper.GetSquaresOdd(new int[] { 1, 2, 3, 4, 5, 6, 7 })));
         }
     }
 }
