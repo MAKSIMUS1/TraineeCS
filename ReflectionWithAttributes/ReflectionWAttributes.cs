@@ -9,6 +9,12 @@ namespace ReflectionWithAttributes
 {
     public static class ReflectionWAttributes
     {
+        private static readonly BindingFlags Flags =
+            BindingFlags.Public |
+            BindingFlags.NonPublic |
+            BindingFlags.Instance |
+            BindingFlags.Static |
+            BindingFlags.DeclaredOnly;
         public static void GetReflectionInformation(Assembly assembly)
         {
             if (assembly == null)
@@ -35,21 +41,18 @@ namespace ReflectionWithAttributes
 
                 PrintAttributes(type.GetCustomAttributes(), "Атрибуты типа");
 
-                bool showAll = choice == "0";
-
-                if (choice == "1" || showAll) PrintMethods(type);
-                if (choice == "2" || showAll) PrintProperties(type);
-                if (choice == "3" || showAll) PrintFields(type);
-                if (choice == "4" || showAll) PrintConstructors(type);
-                if (choice == "5" || showAll) PrintEvents(type);
+                if (choice == "1" || choice == "0") PrintMethods(type);
+                if (choice == "2" || choice == "0") PrintProperties(type);
+                if (choice == "3" || choice == "0") PrintFields(type);
+                if (choice == "4" || choice == "0") PrintConstructors(type);
+                if (choice == "5" || choice == "0") PrintEvents(type);
             }
         }
 
         private static void PrintMethods(Type type)
         {
             Console.WriteLine("\n  Методы:");
-            MethodInfo[] methods = type.GetMethods(BindingFlags.Public | BindingFlags.NonPublic |
-                                                   BindingFlags.Instance | BindingFlags.Static | BindingFlags.DeclaredOnly);
+            MethodInfo[] methods = type.GetMethods(Flags);
 
             foreach (var m in methods)
             {
@@ -63,8 +66,7 @@ namespace ReflectionWithAttributes
         private static void PrintProperties(Type type)
         {
             Console.WriteLine("\n  Свойства:");
-            var props = type.GetProperties(BindingFlags.Public | BindingFlags.NonPublic |
-                                           BindingFlags.Instance | BindingFlags.Static | BindingFlags.DeclaredOnly);
+            var props = type.GetProperties(Flags);
 
             foreach (var p in props)
             {
@@ -76,8 +78,7 @@ namespace ReflectionWithAttributes
         private static void PrintFields(Type type)
         {
             Console.WriteLine("\n  Поля:");
-            var fields = type.GetFields(BindingFlags.Public | BindingFlags.NonPublic |
-                                        BindingFlags.Instance | BindingFlags.Static | BindingFlags.DeclaredOnly);
+            var fields = type.GetFields(Flags);
 
             foreach (var f in fields)
             {
@@ -89,8 +90,7 @@ namespace ReflectionWithAttributes
         private static void PrintConstructors(Type type)
         {
             Console.WriteLine("\n  Конструкторы:");
-            var constructors = type.GetConstructors(BindingFlags.Public | BindingFlags.NonPublic |
-                                                    BindingFlags.Instance | BindingFlags.Static);
+            var constructors = type.GetConstructors(Flags);
 
             foreach (var c in constructors)
             {
@@ -102,8 +102,7 @@ namespace ReflectionWithAttributes
         private static void PrintEvents(Type type)
         {
             Console.WriteLine("\n  События:");
-            var events = type.GetEvents(BindingFlags.Public | BindingFlags.NonPublic |
-                                        BindingFlags.Instance | BindingFlags.Static | BindingFlags.DeclaredOnly);
+            var events = type.GetEvents(Flags);
 
             foreach (var e in events)
             {
