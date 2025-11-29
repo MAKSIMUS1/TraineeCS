@@ -34,7 +34,7 @@ namespace Memory
             double percent = (double)used / _memoryLimitBytes;
 
             Console.WriteLine($"ManagedHeap: { used / 1024 /1024 } MB из { _memoryLimitBytes / 1024 / 1024 } MB");
-            Console.WriteLine($"Поколение sample-объекта: {GC.GetGeneration(sampleObject)}");
+            Console.WriteLine($"Поколение sample-объекта: {GetObjectGeneration(sampleObject)}");
 
             if(percent >= 1)
             {

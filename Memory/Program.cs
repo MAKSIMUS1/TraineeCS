@@ -4,12 +4,18 @@ namespace Memory
 {
     class Program
     {
-        private const long maxGarbage = 1000;
-
         static void Main()
         {
             Console.OutputEncoding = Encoding.UTF8;
-            var monitor = new MemoryMonitor(180);
+
+            Console.Write("Введите порог памяти в МБ: ");
+            int limitMb;
+            while (!int.TryParse(Console.ReadLine(), out limitMb) || limitMb <= 0)
+            {
+                Console.Write("Некорректный ввод. Введите положительное число: ");
+            }
+
+            var monitor = new MemoryMonitor(limitMb);
 
             int[] bigArray = new int[5_000_000];
 
