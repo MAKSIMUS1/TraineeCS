@@ -8,8 +8,8 @@ namespace UniversalStorage
 {
     public class Phone
     {
-        public string Model;
-        public double Price;
+        public string Model { get; set; }
+        public double Price { get; set; }
         public override string ToString()
         {
             return $"Phone: {Model}, Price: ${Price}";

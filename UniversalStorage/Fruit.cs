@@ -8,8 +8,8 @@ namespace UniversalStorage
 {
     public class Fruit
     {
-        public string Name;
-        public double Weight;
+        public string Name { get; set; }
+        public double Weight { get; set; }
         public override string ToString()
         {
             return $"Fruit: {Name}, Weight: {Weight}kg";
