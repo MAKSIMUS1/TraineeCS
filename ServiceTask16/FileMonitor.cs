@@ -1,23 +1,24 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.ServiceProcess;
-using System.Text;
-using System.Threading.Tasks;
+using System.Configuration;
 
 namespace ServiceTask16
 {
     public class FileMonitor : ServiceBase
     {
         private FileSystemWatcher _watcher;
-        private readonly string _folderToWatch = @"F:\temp";
-        private readonly string _logFile = @"F:\FileMonitorLog.txt";
+
+        private readonly string _folderToWatch;
+        private readonly string _logFile;
 
         public FileMonitor()
         {
             this.ServiceName = "FileMonitorService";
             this.AutoLog = false;
+
+            _folderToWatch = ConfigurationManager.AppSettings["FolderToWatch"];
+            _logFile = ConfigurationManager.AppSettings["LogFile"];
         }
         protected override void OnStart(string[] args)
         {

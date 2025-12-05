@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.Diagnostics;
 using System.IO;
 using System.ServiceProcess;
@@ -9,11 +10,11 @@ namespace FileMonitorWinForm
 {
     public partial class FileMonitorForm : Form
     {
-        private const string ServiceName = "FileMonitorService";
-        private const string LogFile = @"F:\FileMonitorLog.txt";
-        private const string ServiceFile = @"F:\Intermech_Trainee\TraineeCS\ServiceTask16\bin\Debug\ServiceTask16.exe";
-        private const string InstallUtilFile = @"C:\Windows\Microsoft.NET\Framework64\v4.0.30319\InstallUtil.exe";
-        
+        private readonly string ServiceName = ConfigurationManager.AppSettings["ServiceName"];
+        private readonly string LogFile = ConfigurationManager.AppSettings["LogFile"];
+        private readonly string ServiceFile = ConfigurationManager.AppSettings["ServiceExecutable"];
+        private readonly string InstallUtilFile = ConfigurationManager.AppSettings["InstallUtil"];
+
         public FileMonitorForm()
         {
             InitializeComponent();
